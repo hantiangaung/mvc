@@ -2,6 +2,6 @@
 
    	return array(
 
-       'CTRL'=>'index',
-       'ACTION'=>'index',
+       'ctrl'=>'index',
+       'action'=>'index',
     );

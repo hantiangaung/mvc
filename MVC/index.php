@@ -19,12 +19,22 @@
   // 开启调试模式
   define('DEBUG',true);
 
+  //引入composer类
+  include "vendor/autoload.php";
 
   if(DEBUG){
+    $whoops = new \Whoops\Run;
+    $errorTitle='框架出错了';
+    $option = new \Whoops\Handler\PrettyPageHandler();
+    $option->setPageTitle($errorTitle);
+    $whoops->pushHandler($option);
+    $whoops->register();
     ini_set('display_error','On');
   }else{
     ini_set('display_error','Off');
   }
+
+  // var_dump($_SERVER);
   // 然后在index.php入口文件加载我们的函数库。
   include CORE.'/common/function.php';
   // p(MVC);die;

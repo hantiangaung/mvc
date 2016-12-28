@@ -10,7 +10,8 @@ class route
 	{
 		//p($_SERVER);
 		if(isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != '/MVC/'){
-			$path = $_SERVER['REQUEST_URI'];
+			// $path = $_SERVER['REQUEST_URI'];
+			$path = $_GET['url'];
 			$patharr = explode('/',trim($path,'/'));
 			if(isset($patharr[0])){
 				$this->ctrl = $patharr[0];
@@ -38,8 +39,8 @@ class route
 			//p($_GET);
 
 		} else {
-			$this->ctrl = conf::get('CTRL','route');
-			$this->action = conf::get('ACTION','route');
+			$this->ctrl = conf::get('ctrl','route');
+			$this->action = conf::get('action','route');
 		}
 	}
 }

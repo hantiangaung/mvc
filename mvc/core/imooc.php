@@ -6,23 +6,22 @@ class imooc{
 	//启动框架
 	static public function run(){
 		// p('ok');die;
+		\core\lib\log::init();
+		\core\lib\log::log('test');
+		
 		$route = new \core\lib\route();
 		// p($route);
-
-		/*\core\lib\log::init();
-		\core\lib\log::log('test');
-		$route = new \core\lib\route();*/
-
 		$ctrlClass = $route->ctrl;
 		$action = $route->action;
-		$ctrlFile = APP.'/ctrl/'.$ctrlClass.'Ctrl.php';
-		$cltrlClass = '\\'.MODULE.'\ctrl\\'.$ctrlClass.'Ctrl';
+		$ctrlFile = APP.'/ctrl/'.$ctrlClass.'ctrl.php';
+		$ctrlClass = '\\'.MODULE.'\ctrl\\'.$ctrlClass.'ctrl';
 		
 		//p($ctrlFile);exit;
 		if(is_file($ctrlFile)){
 			include $ctrlFile;
-			$ctrl=new $cltrlClass();
+			$ctrl = new $cltrlClass();
 			$ctrl->$action();
+			\core\lib\log::log('ctrl:'.$ctrlClass.'    '.'action:'.$action);
 		}else{
 			throw new \Exception('找不到控制器'.$ctrlClass);
 		}
